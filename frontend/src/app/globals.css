@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+/* Design tokens. Light/dark steps follow a validated categorical palette (first five slots,
+   in order, so every adjacent pair keeps its CVD separation). Series color follows the entity
+   (model), never its rank. */
+:root {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #6f6d67;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.1);
+  --hover: rgba(11, 11, 11, 0.045);
+  --s1: #2a78d6; /* blue    - xgboost */
+  --s2: #eb6834; /* orange  - moving average */
+  --s3: #1baf7a; /* aqua    - seasonal naive */
+  --s4: #eda100; /* yellow  - naive */
+  --s5: #e87ba4; /* magenta - xgboost v2 experiment */
+  --good: #006300;
+  --warn: #8a5a00;
+  --crit: #b3261e;
+  --wash: rgba(42, 120, 214, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --ink: #f0efec;
+    --ink-2: #c3c2b7;
+    --muted: #9a988f;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255, 255, 255, 0.1);
+    --hover: rgba(255, 255, 255, 0.06);
+    --s1: #3987e5;
+    --s2: #d95926;
+    --s3: #199e70;
+    --s4: #c98500;
+    --s5: #d55181;
+    --good: #0ca30c;
+    --warn: #fab219;
+    --crit: #ec7a72;
+    --wash: rgba(57, 135, 229, 0.18);
+  }
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-grid: var(--grid);
+  --color-axis: var(--axis);
+  --color-line: var(--border);
+  --color-accent: var(--s1);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --color-crit: var(--crit);
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  background: var(--page);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Recharts chrome stays recessive */
+.recharts-cartesian-axis-tick-value {
+  fill: var(--muted);
+  font-size: 12px;
+}
+.recharts-cartesian-grid line {
+  stroke: var(--grid);
+}
+.recharts-tooltip-cursor {
+  stroke: var(--axis);
+}
+
+input[type="range"] {
+  accent-color: var(--s1);
+}
+
+:focus-visible {
+  outline: 2px solid var(--s1);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (forced-colors: active) {
+  .series-key {
+    forced-color-adjust: none;
+    border: 1px solid CanvasText;
+  }
+}

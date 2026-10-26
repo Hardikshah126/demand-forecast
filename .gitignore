@@ -1,0 +1,35 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+
+# Secrets and local config
+.env
+.env.local
+
+# Data (never commit raw or derived datasets)
+data/
+!data/.gitkeep
+artifacts/
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.vercel/
+frontend/next-env.d.ts
+*.tsbuildinfo
+
+# Local Postgres (fallback when Docker is unavailable)
+.pgdata/
+.pgbin/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
